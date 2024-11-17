@@ -29,11 +29,9 @@ app.get("/luck", (req, res) => {
 
 app.get("/janken", (req, res) => {
   let hand = req.query.hand;
-  let win = Number( req.query.win ) || 0;
-  let total = Number( req.query.total ) || 0;
-
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
   console.log( {hand, win, total});
-
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
   if( num==1 ) cpu = 'グー';
@@ -45,9 +43,9 @@ app.get("/janken", (req, res) => {
   if (hand == cpu) {
     judgement = '引き分け';
   } else if (
-    (hand == 'グー' && cpu == 'チョキ') ||
-    (hand == 'チョキ' && cpu == 'パー') ||
-    (hand == 'パー' && cpu == 'グー') 
+    (hand == 'グー' && cpu == 'チョキ')
+    (hand == 'チョキ' && cpu == 'パー')
+    (hand == 'パー' && cpu == 'グー')
   ) {
     judgement = '勝ち';
     win += 1;
@@ -68,50 +66,38 @@ app.get("/janken", (req, res) => {
   res.render('janken', display);
 });
 
-//数当てゲーム
-app.get("/kazuate", (req, res) => {
-const value = req.query.number;
-const num = Number( value );
-const randomNumber = Math.floor(Math.random() * 10 + 1);
-let result = '';
-if (num === randomNumber) {
-  result = '当たりやで、やるやん';
-} else {
-  result = `ハズレですよ^^(草)`;
-}
-const display = {
-  value: value,
-  randomNumber: randomNumber,
-  result: result
-};
-res.render('kazuate',display);
+app.listen(8080, () => console.log("Example app listening on port 8080!"));
+
+// 数当てゲーム
+app.get("/guess", (req, res) => {
+  const userGuess = Number(req.query.number);
+  const randomNumber = Math.floor(Math.random() * 10 + 1);
+  let result = '';
+  if (userGuess === randomNumber) {
+    result = '当たりやで、やるやん。';
+  } else {
+    result = `ハズレだお、正解は ${randomNumber} でした。なんで間違えたのか考えてください。`;
+  }
+  res.render('guess', { userGuess, randomNumber, result });
 });
 
-//季節の説明
-app.get("/kisetu", (req, res) => {
-  const value = req.query.radio;
-  const num = Number(value);
-  let result = '';
-  let ino = '';
-  if (num === 1) {
-    result = '春は桜が咲き、暖かくなります。';
-    ino = '春';
-  } else if(num ===2 ){
-    result = `夏は暑く、晴れの日が多いです。`;
-    ino = '夏';
-  } else if(num === 3){
-    result = `秋は紅葉が美しく、涼しい季節です。`;
-    ino = '秋';
-  }else{
-    result = '冬は寒く、雪が降ることもあります。';
-    ino = '冬';
+// 天気占い
+app.get("/weather", (req, res) => {
+  const season = req.query.season;
+  let weatherMessage = '';
+  if (season === '春') {
+    weatherMessage = '春は桜が咲き、暖かくなります。';
+  } else if (season === '夏') {
+    weatherMessage = '夏は暑く、晴れの日が多いです。';
+  } else if (season === '秋') {
+    weatherMessage = '秋は紅葉が美しく、涼しい季節です。';
+  } else if (season === '冬') {
+    weatherMessage = '冬は寒く、雪が降ることもあります。';
+  } else {
+    weatherMessage = '季節が入力されていません。春、夏、秋、冬のいずれかを入力してください。';
   }
-  const display = {
-    ino: ino,
-    result: result
-  };
-  res.render('kisetu',display);
-  });
+  res.render('weather', { season, weatherMessage });
+});
 
+//数当てゲーム＿その２
 
-app.listen(8080, () => console.log("Example app listening on port 8080!"));

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>季節の説明</title>
+</head>
+<body>
+    <p>今あなたは<%= ino %>を選びました</p>
+    <p>説明：<%= result %></p>
+    <p>次はどの季節の説明みる？</p>
+    <form action="/kisetu" method="get">
+        <input type="radio" name="radio" id="radio1" value="1">
+        <label for="radio1">春</label><br>
+        <input type="radio" name="radio" id="radio2" value="2">
+        <label for="radio2">夏</label><br>
+        <input type="radio" name="radio" id="radio3" value="3">
+        <label for="radio3">秋</label><br>
+        <input type="radio" name="radio" id="radio4" value="4">
+        <label for="radio4">冬</label><br>
+        <input type="submit" value="送信">
+    </form>
+    </body>
+    </html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>数当て</title>
+</head>
+<body>
+    <p>今あなたは<%= value %>を選びました</p>
+    <p>コンピューターは<%= randomNumber %>を選択しています</p>
+    <p>判定：<%= result %></p>
+    <form action="/kazuate" method="get">
+        <input type="text" name="number" required>
+        <label for="number">1~10の整数で何を出す？</label>
+    <input type="submit" value="送信">
+    </form>
+    </body>
+    </html>
