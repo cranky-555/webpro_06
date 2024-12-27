@@ -5,7 +5,7 @@
 1. ターミナルでapp5.jsが格納されているディレクトリーまで移動する
 1. ```node app5.js``` を起動する
 1. 新規ウィンドウでターミナルを開き、そこに```telnet localhost 8080```を打ちこむ
-1. Webブラウザでlocalhost:8080/public/hoge.htmlにアクセス
+1. Webブラウザでhtml://localhost:8080/public/hoge.htmlにアクセス
 (hogeは使いたいそれぞれの機能の名前を入力する)
 1. 各機能で入力可能な箇所を、入力する
 
