@@ -1,13 +1,37 @@
 .cover {
     border-bottom: 1px solid #c0c0c0;
     margin: 3px;
+    padding: 5px;
 }
 
 .name {
     font-weight: bold;
     width: 8em;
+    display: inline-block;
 }
 
 .mes {
-    margin-left: 30px;
+    margin-left: 10px;
+    display: inline-block;
+    width: 50%;
+}
+
+.buttons {
+    margin-left: 10px;
+}
+
+button {
+    margin: 0 5px;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.like {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.like:hover {
+    text-decoration: underline;
 }
